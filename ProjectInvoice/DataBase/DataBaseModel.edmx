@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProjectInvoiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Commodity">
+          <Key>
+            <PropertyRef Name="CommodityID" />
+          </Key>
+          <Property Name="CommodityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="Unit" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PriceNetto" Type="int" Nullable="false" />
+          <Property Name="ValueNetto" Type="int" Nullable="false" />
+          <Property Name="VAT" Type="int" Nullable="false" />
+          <Property Name="AmountVAT" Type="int" Nullable="false" />
+          <Property Name="AmountBrutto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForeignCompany">
+          <Key>
+            <PropertyRef Name="ForeignCompanyID" />
+          </Key>
+          <Property Name="ForeignCompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="NIP" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PhoneNumber" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="BankName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BankAccountNumber" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+          </Key>
+          <Property Name="InvoiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="ForeignCompanyID" Type="int" Nullable="false" />
+          <Property Name="NoInvoice" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="FinishDateDelivery" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="PaymentDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="PaymentWay" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="IsPay" Type="bit" />
+        </EntityType>
+        <EntityType Name="OurCompany">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="NIP" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PhoneNumber" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="BankName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BankAccountNumber" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Commodity_Invoice">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="Commodity" Type="Self.Commodity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceID" />
+            </Principal>
+            <Dependent Role="Commodity">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_ForeignCompany">
+          <End Role="ForeignCompany" Type="Self.ForeignCompany" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ForeignCompany">
+              <PropertyRef Name="ForeignCompanyID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="ForeignCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_OurCompany">
+          <End Role="OurCompany" Type="Self.OurCompany" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OurCompany">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjectInvoiceModelStoreContainer">
+          <EntitySet Name="Commodity" EntityType="Self.Commodity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForeignCompany" EntityType="Self.ForeignCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OurCompany" EntityType="Self.OurCompany" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Commodity_Invoice" Association="Self.FK_Commodity_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="Commodity" EntitySet="Commodity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_ForeignCompany" Association="Self.FK_Invoice_ForeignCompany">
+            <End Role="ForeignCompany" EntitySet="ForeignCompany" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_OurCompany" Association="Self.FK_Invoice_OurCompany">
+            <End Role="OurCompany" EntitySet="OurCompany" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjectInvoiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Commodity">
+          <Key>
+            <PropertyRef Name="CommodityID" />
+          </Key>
+          <Property Name="CommodityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="Unit" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PriceNetto" Type="Int32" Nullable="false" />
+          <Property Name="ValueNetto" Type="Int32" Nullable="false" />
+          <Property Name="VAT" Type="Int32" Nullable="false" />
+          <Property Name="AmountVAT" Type="Int32" Nullable="false" />
+          <Property Name="AmountBrutto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK_Commodity_Invoice" FromRole="Commodity" ToRole="Invoice" />
+        </EntityType>
+        <EntityType Name="ForeignCompany">
+          <Key>
+            <PropertyRef Name="ForeignCompanyID" />
+          </Key>
+          <Property Name="ForeignCompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BankAccountNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK_Invoice_ForeignCompany" FromRole="ForeignCompany" ToRole="Invoice" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+          </Key>
+          <Property Name="InvoiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="ForeignCompanyID" Type="Int32" Nullable="false" />
+          <Property Name="NoInvoice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="FinishDateDelivery" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="PaymentWay" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsPay" Type="Boolean" />
+          <NavigationProperty Name="Commodity" Relationship="Self.FK_Commodity_Invoice" FromRole="Invoice" ToRole="Commodity" />
+          <NavigationProperty Name="ForeignCompany" Relationship="Self.FK_Invoice_ForeignCompany" FromRole="Invoice" ToRole="ForeignCompany" />
+          <NavigationProperty Name="OurCompany" Relationship="Self.FK_Invoice_OurCompany" FromRole="Invoice" ToRole="OurCompany" />
+        </EntityType>
+        <EntityType Name="OurCompany">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BankAccountNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK_Invoice_OurCompany" FromRole="OurCompany" ToRole="Invoice" />
+        </EntityType>
+        <Association Name="FK_Commodity_Invoice">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="Commodity" Type="Self.Commodity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceID" />
+            </Principal>
+            <Dependent Role="Commodity">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_ForeignCompany">
+          <End Role="ForeignCompany" Type="Self.ForeignCompany" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ForeignCompany">
+              <PropertyRef Name="ForeignCompanyID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="ForeignCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_OurCompany">
+          <End Role="OurCompany" Type="Self.OurCompany" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OurCompany">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjectInvoiceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Commodity" EntityType="Self.Commodity" />
+          <EntitySet Name="ForeignCompany" EntityType="Self.ForeignCompany" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" />
+          <EntitySet Name="OurCompany" EntityType="Self.OurCompany" />
+          <AssociationSet Name="FK_Commodity_Invoice" Association="Self.FK_Commodity_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="Commodity" EntitySet="Commodity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_ForeignCompany" Association="Self.FK_Invoice_ForeignCompany">
+            <End Role="ForeignCompany" EntitySet="ForeignCompany" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_OurCompany" Association="Self.FK_Invoice_OurCompany">
+            <End Role="OurCompany" EntitySet="OurCompany" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjectInvoiceModelStoreContainer" CdmEntityContainer="ProjectInvoiceEntities">
+          <EntitySetMapping Name="Commodity">
+            <EntityTypeMapping TypeName="ProjectInvoiceModel.Commodity">
+              <MappingFragment StoreEntitySet="Commodity">
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="PriceNetto" ColumnName="PriceNetto" />
+                <ScalarProperty Name="ValueNetto" ColumnName="ValueNetto" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+                <ScalarProperty Name="AmountVAT" ColumnName="AmountVAT" />
+                <ScalarProperty Name="AmountBrutto" ColumnName="AmountBrutto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForeignCompany">
+            <EntityTypeMapping TypeName="ProjectInvoiceModel.ForeignCompany">
+              <MappingFragment StoreEntitySet="ForeignCompany">
+                <ScalarProperty Name="ForeignCompanyID" ColumnName="ForeignCompanyID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="NIP" ColumnName="NIP" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoice">
+            <EntityTypeMapping TypeName="ProjectInvoiceModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="ForeignCompanyID" ColumnName="ForeignCompanyID" />
+                <ScalarProperty Name="NoInvoice" ColumnName="NoInvoice" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="FinishDateDelivery" ColumnName="FinishDateDelivery" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="PaymentWay" ColumnName="PaymentWay" />
+                <ScalarProperty Name="IsPay" ColumnName="IsPay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OurCompany">
+            <EntityTypeMapping TypeName="ProjectInvoiceModel.OurCompany">
+              <MappingFragment StoreEntitySet="OurCompany">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="NIP" ColumnName="NIP" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
