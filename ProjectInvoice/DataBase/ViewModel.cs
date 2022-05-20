@@ -26,6 +26,16 @@ namespace ProjectInvoice.DataBase
             get => GetValue<ObservableCollection<Invoice>>();
             set => SetValue(value);
         }
+        public ObservableCollection<OurCompany> OurCompanies
+        {
+            get => GetValue<ObservableCollection<OurCompany>>();
+            set => SetValue(value);
+        }
+        public ObservableCollection<ForeignCompany> ForeignCompanies
+        {
+            get => GetValue<ObservableCollection<ForeignCompany>>();
+            set => SetValue(value);
+        }
 
         public ViewModel()
         {
@@ -35,6 +45,8 @@ namespace ProjectInvoice.DataBase
             {
                 Commodities = new ObservableCollection<Commodity>();
                 Invoices = new ObservableCollection<Invoice>();
+                OurCompanies = new ObservableCollection<OurCompany>();
+                ForeignCompanies = new ObservableCollection<ForeignCompany>();
             }
             else
             {
@@ -42,6 +54,10 @@ namespace ProjectInvoice.DataBase
                 Commodities = dbcontext.Commodities.Local;
                 dbcontext.Invoices.Load();
                 Invoices = dbcontext.Invoices.Local;
+                dbcontext.OurCompanies.Load();
+                OurCompanies = dbcontext.OurCompanies.Local;
+                dbcontext.ForeignCompanies.Load();
+                ForeignCompanies = dbcontext.ForeignCompanies.Local;
             }
         }
     }
