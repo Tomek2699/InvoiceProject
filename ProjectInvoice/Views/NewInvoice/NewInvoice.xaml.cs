@@ -82,6 +82,7 @@ namespace ProjectInvoice.Views
                 FinishDateDelivery = dateEditFinishDateDelivery.DateTime,
                 PaymentDate = dateEditPaymentDay.DateTime,
                 PaymentWay = comboBoxPaymentWay.Text,
+                IsPay = false,
             };
             invoiceService.Save(invoice);
         }

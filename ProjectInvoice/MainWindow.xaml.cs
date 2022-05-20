@@ -27,6 +27,9 @@ namespace ProjectInvoice
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            InvoiceTab.Visibility = Visibility.Hidden;
+            CompanyTab.Visibility = Visibility.Hidden;
         }
 
         private void CreateInvoice(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
@@ -49,6 +52,22 @@ namespace ProjectInvoice
             NewForeignCompany window = new NewForeignCompany();
             window.Owner = this;
             window.ShowDialog();
+        }
+
+        private void RibbonControl_SelectedPageChanged(object sender, DevExpress.Xpf.Ribbon.RibbonPropertyChangedEventArgs e)
+        {
+            if(ribbonControl.SelectedPage == InvoicePage)
+            {
+                TabControl.ShowTabItem(InvoiceTab, true);
+                InvoiceTab.Visibility = Visibility.Hidden;
+                CompanyTab.Visibility = Visibility.Hidden;
+            }
+            else if(ribbonControl.SelectedPage == CompanyPage)
+            {
+                TabControl.ShowTabItem(CompanyTab, true);
+                InvoiceTab.Visibility = Visibility.Hidden;
+                CompanyTab.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

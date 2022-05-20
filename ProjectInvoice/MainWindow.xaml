@@ -6,33 +6,95 @@
     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:DataBase="clr-namespace:ProjectInvoice.DataBase" 
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" 
     x:Class="ProjectInvoice.MainWindow"
-    Title="Fakturka" Height="800" Width="1000">
+    Title="Fakturka" Height="882" Width="1526">
     <dx:ThemedWindow.DataContext>
         <DataBase:ViewModel/>
     </dx:ThemedWindow.DataContext>
     <Grid>
-        <dxr:RibbonControl HorizontalAlignment="Stretch" RibbonStyle="Office2019" VerticalAlignment="Top">
+        <dxr:RibbonControl x:Name="ribbonControl" HorizontalAlignment="Stretch" RibbonStyle="Office2019" VerticalAlignment="Top" AllowSimplifiedRibbon="True" ToolbarShowMode="Default" ShowApplicationButton="False" SelectedPageChanged="RibbonControl_SelectedPageChanged">
             <dxr:RibbonDefaultPageCategory>
-                <dxr:RibbonPage Caption="Faktury">
+                <dxr:RibbonPage x:Name="InvoicePage" Caption="Faktury">
                     <dxr:RibbonPageGroup Caption="Faktura">
                         <dxb:BarButtonItem x:Name="newInvoice" Content="Nowa faktura" ToolTip="Uwtórz nową fakturę" Glyph="{dx:DXImage SvgImages/Actions/New.svg}" RibbonStyle="Large" Padding="20,5,20,10" ItemClick="CreateInvoice" />
                     </dxr:RibbonPageGroup>
+                </dxr:RibbonPage>
+                <dxr:RibbonPage x:Name="CompanyPage" Caption="Firmy">
                     <dxr:RibbonPageGroup Caption="Własna firma">
                         <dxb:BarButtonItem x:Name="newOurCompany" Content="Nowa firma" ToolTip="Dodaj swoją nową firmę" Glyph="{dx:DXImage SvgImages/Business Objects/BO_Person.svg}" RibbonStyle="Large" Padding="20,5,20,10" ItemClick="CreateNewOurCompany"/>
                     </dxr:RibbonPageGroup>
                     <dxr:RibbonPageGroup Caption="Kontrahent">
                         <dxb:BarButtonItem x:Name="newForeignCompany" Content="Nowy kontrahent" ToolTip="Dodaj nowego kontrahent" Glyph="{dx:DXImage SvgImages/Business Objects/BO_Customer.svg}" RibbonStyle="Large" Padding="20,5,20,10" ItemClick="CreateNewContractor"/>
                     </dxr:RibbonPageGroup>
-
-
                 </dxr:RibbonPage>
             </dxr:RibbonDefaultPageCategory>
         </dxr:RibbonControl>
-        <dxg:GridControl x:Name="InvoiceGrid" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" Margin="0,154,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Invoices}">
-            <dxg:GridControl.View>
-                <dxg:TableView Height="622" VerticalAlignment="Stretch"/>
-            </dxg:GridControl.View>
-        </dxg:GridControl>
+        <dx:DXTabControl x:Name="TabControl" Margin="0,154,0,0" SelectedIndex="1" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Visible">
+            <dx:DXTabItem x:Name="InvoiceTab" Header="Faktury" ScrollViewer.VerticalScrollBarVisibility="Auto" IsSelected="True" Visibility="Visible" VisibleInHeaderMenu="False" TabIndex="-1">
+                <Grid x:Name="InvoiceTabGrid" Background="#00000000">
+                    <dxdo:DockLayoutManager>
+                        <dxdo:LayoutGroup Caption="LayoutRoot">
+                            <dxdo:LayoutPanel x:Name="InvoicePanel" ShowBorder="False" ShowPinButton="False" ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <dxg:GridControl x:Name="InvoiceGrid" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding Invoices}" Panel.ZIndex="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView Height="622" VerticalAlignment="Stretch" VerticalScrollbarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Visible" HorizontalScrollbarVisibility="Auto" HeaderHorizontalAlignment="Left" HorizontalAlignment="Stretch" UnboundExpressionEditorCreated="TableView_UnboundExpressionEditorCreated"/>
+                                    </dxg:GridControl.View>
+                                    <dxg:GridColumn FieldName="InvoiceID" Header="ID" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                    <dxg:GridColumn x:Name="columnCompanyID" FieldName="CompanyID" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                    <dxg:GridColumn x:Name="columnForeignCompanyID" FieldName="ForeignCompanyID" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                    <dxg:GridColumn FieldName="NoInvoice" Header="Numer faktury" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                    <dxg:GridColumn FieldName="StartDate" Header="Data wystawienia" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                    <dxg:GridColumn FieldName="FinishDateDelivery" Header="Data zakończenia dostawy towaru" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                    <dxg:GridColumn FieldName="PaymentDate" Header="Data płatności" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                    <dxg:GridColumn FieldName="PaymentWay" Header="Sposób płatności" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                    <dxg:GridColumn FieldName="IsPay" Header="Czy zapłacono" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                    <dxg:GridColumn FieldName="ForeignCompany" IsSmart="True"/>
+                                    <dxg:GridColumn FieldName="OurCompany" IsSmart="True"/>
+                                </dxg:GridControl>
+                            </dxdo:LayoutPanel>
+                        </dxdo:LayoutGroup>
+                    </dxdo:DockLayoutManager>
+                </Grid>
+            </dx:DXTabItem>
+            <dx:DXTabItem x:Name="CompanyTab" Header="Firmy" VisibleInHeaderMenu="False">
+                <Grid x:Name="CompanyTabGrid" Background="#00000000">
+                    <dxdo:DockLayoutManager>
+                        <dxdo:LayoutGroup Caption="LayoutRoot">
+                            <dxdo:LayoutGroup Orientation="Horizontal">
+                                <dxdo:LayoutPanel ShowPinButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False" ShowCloseButton="False" ShowBorder="False">
+                                    <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding OurCompanies}">
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView/>
+                                        </dxg:GridControl.View>
+                                        <dxg:GridColumn FieldName="CompanyID" Header="ID" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                        <dxg:GridColumn FieldName="CompanyName" Header="Nazwa firmy" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                        <dxg:GridColumn FieldName="Address" Header="Adres" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                        <dxg:GridColumn FieldName="NIP" Header="NIP" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                        <dxg:GridColumn FieldName="PhoneNumber" Header="Numer telefonu" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                        <dxg:GridColumn FieldName="BankName" Header="Nazwa banku" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                        <dxg:GridColumn FieldName="BankAccountNumber" Header="Numer konta bankowego" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                    </dxg:GridControl>
+                                </dxdo:LayoutPanel>
+                                <dxdo:LayoutPanel ShowPinButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False" ShowCloseButton="False" ShowBorder="False">
+                                    <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding ForeignCompanies}">
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView/>
+                                        </dxg:GridControl.View>
+                                        <dxg:GridColumn FieldName="ForeignCompanyID" Header="ID" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                        <dxg:GridColumn FieldName="CompanyName" Header="Nazwa firmy" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                        <dxg:GridColumn FieldName="Address" Header="Adres" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                        <dxg:GridColumn FieldName="NIP" Header="NIP" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                        <dxg:GridColumn FieldName="PhoneNumber" Header="Numer telefonu" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                        <dxg:GridColumn FieldName="BankName" Header="Nazwa banku" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                        <dxg:GridColumn FieldName="BankAccountNumber" Header="Numer konta bankowego" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
+                                    </dxg:GridControl>
+                                </dxdo:LayoutPanel>
+                            </dxdo:LayoutGroup>
+                        </dxdo:LayoutGroup>
+                    </dxdo:DockLayoutManager>
+                </Grid>
+            </dx:DXTabItem>
+        </dx:DXTabControl>
     </Grid>
 </dx:ThemedWindow>
