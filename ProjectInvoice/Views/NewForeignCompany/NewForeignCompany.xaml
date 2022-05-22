@@ -4,30 +4,33 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-    Title="Dodawanie nowego kontrahenta" Height="587" Width="802"
+    Title="Dodawanie nowego kontrahenta" Height="511" Width="786"
     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxspch="http://schemas.devexpress.com/winfx/2008/xaml/spellchecker"
-    WindowStartupLocation="CenterOwner"
+    WindowStartupLocation="CenterOwner" MinHeight="511" MinWidth="802" MaxWidth="802" MaxHeight="511" Icon="{dx:DXImage SvgImages/Business Objects/BO_Report.svg}" ControlBoxButtonSet="Close"
     >
 
-    <Grid Margin="0,10,0,-10">
-        <Label x:Name="CompanyName" Content="Nazwa firmy:" HorizontalAlignment="Left" Margin="79,54,0,0" VerticalAlignment="Top" Width="116" Height="30" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-        <Label x:Name="Address" Content="Adres firmy:" HorizontalAlignment="Left" Margin="84,134,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-        <Label x:Name="NIP" Content="NIP:" HorizontalAlignment="Left" Margin="84,212,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-        <Label x:Name="PhoneNumber" Content="Numer telefonu:" HorizontalAlignment="Left" Margin="79,454,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-        <Label x:Name="BankAccountNumber" Content="Numer konta bankowego:" HorizontalAlignment="Left" Margin="79,375,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-        <Label x:Name="BankName" Content="Nazwa banku:" HorizontalAlignment="Left" Margin="79,295,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+    <Grid Margin="0,10,0,-6">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="CompanyName" Content="Nazwa firmy:" HorizontalAlignment="Left" Margin="128,54,0,0" VerticalAlignment="Top" Width="116" Height="30" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Label x:Name="Address" Content="Adres firmy:" HorizontalAlignment="Left" Margin="142,134,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Label x:Name="NIP" Content="NIP:" HorizontalAlignment="Left" Margin="202,208,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Label x:Name="PhoneNumber" Content="Numer telefonu:" HorizontalAlignment="Left" Margin="110,370,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Label x:Name="BankAccountNumber" Content="Numer konta bankowego:" HorizontalAlignment="Left" Margin="38,325,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Label x:Name="BankName" Content="Nazwa banku:" HorizontalAlignment="Left" Margin="129,263,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
 
-        <dxe:TextEdit x:Name="textBoxCompanyName" HorizontalAlignment="Left" Margin="210,54,0,0" VerticalAlignment="Top" Width="429" Height="60" TextWrapping="Wrap" ValidateOnTextInput="False" Validate="textBoxCompanyName_Validate">
+        <dxe:TextEdit x:Name="textBoxCompanyName" HorizontalAlignment="Left" Margin="268,54,0,0" VerticalAlignment="Top" Width="429" Height="60" TextWrapping="Wrap" ValidateOnTextInput="False" Validate="textBoxCompanyName_Validate" Grid.ColumnSpan="2">
             <dxmvvm:Interaction.Behaviors>
                 <dxspch:DXSpellChecker/>
             </dxmvvm:Interaction.Behaviors>
         </dxe:TextEdit>
-        <dxe:TextEdit x:Name="textBoxAddress" HorizontalAlignment="Left" Margin="210,134,0,0" VerticalAlignment="Top" Width="429" Height="60" Validate="textBoxAddress_Validate" TextWrapping="Wrap"/>
-        <dxe:TextEdit x:Name="textBoxNIP" HorizontalAlignment="Left" Margin="210,212,0,0" VerticalAlignment="Top" Width="191" Height="27" Validate="textBoxNIP_Validate"/>
-        <dxe:TextEdit x:Name="textBoxBankName" HorizontalAlignment="Left" Margin="210,295,0,0" VerticalAlignment="Top" Width="429" Height="27" Validate="textBoxBankName_Validate" TextWrapping="Wrap"/>
-        <dxe:TextEdit x:Name="textBoxBankAccountNumber" HorizontalAlignment="Left" Margin="306,375,0,0" VerticalAlignment="Top" Width="333" Height="27" Validate="textBoxBankAccountNumber_Validate"/>
-        <dxe:TextEdit x:Name="textBoxPhoneNumber" HorizontalAlignment="Left" Margin="239,454,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.7,0.593" Width="162" Height="25" TextWrapping="Wrap" Validate="textBoxPhoneNumber_Validate"/>
-        <dx:SimpleButton x:Name="btnSave" Content="Zapisz" HorizontalAlignment="Left" Height="31" Margin="640,493,0,0" VerticalAlignment="Top" Width="142" FontSize="16" FontWeight="Bold" Background="#FF00DA0D" Foreground="Black" Glyph="{dx:DXImage SvgImages/HybridDemoIcons/BottomPanel/HybridDemo_Save.svg}" ToolTip="Zapisz" Click="Save"/>
+        <dxe:TextEdit x:Name="textBoxAddress" HorizontalAlignment="Left" Margin="268,134,0,0" VerticalAlignment="Top" Width="429" Height="60" Validate="textBoxAddress_Validate" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+        <dxe:TextEdit x:Name="textBoxNIP" HorizontalAlignment="Left" Margin="268,212,0,0" VerticalAlignment="Top" Width="191" Height="27" Validate="textBoxNIP_Validate"/>
+        <dxe:TextEdit x:Name="textBoxBankName" HorizontalAlignment="Left" Margin="268,265,0,0" VerticalAlignment="Top" Width="429" Height="27" Validate="textBoxBankName_Validate" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+        <dxe:TextEdit x:Name="textBoxBankAccountNumber" HorizontalAlignment="Left" Margin="268,327,0,0" VerticalAlignment="Top" Width="333" Height="27" Validate="textBoxBankAccountNumber_Validate"/>
+        <dxe:TextEdit x:Name="textBoxPhoneNumber" HorizontalAlignment="Left" Margin="268,380,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.7,0.593" Width="162" Height="25" TextWrapping="Wrap" Validate="textBoxPhoneNumber_Validate"/>
+        <dx:SimpleButton x:Name="btnSave" Content="Zapisz" HorizontalAlignment="Left" Height="31" Margin="611,424,0,0" VerticalAlignment="Top" Width="142" FontSize="16" FontWeight="Bold" Background="#FF00DA0D" Foreground="Black" Glyph="{dx:DXImage SvgImages/HybridDemoIcons/BottomPanel/HybridDemo_Save.svg}" ToolTip="Zapisz" Click="Save" Grid.ColumnSpan="2"/>
 
     </Grid>
 </dx:ThemedWindow>

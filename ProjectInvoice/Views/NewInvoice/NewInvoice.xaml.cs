@@ -87,14 +87,6 @@ namespace ProjectInvoice.Views
             invoiceService.Save(invoice);
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            SaveInvoice();
-            SaveCommodities();
-            mainWindow.InvoiceGrid.RefreshData();
-            this.Close();
-        }
-
         private void CommoditiesUpdate(object sender, DevExpress.Xpf.Grid.RowEventArgs e)
         {
            int lastInvoiceId = dbContext.Invoices.Count() + 1;
@@ -104,6 +96,14 @@ namespace ProjectInvoice.Views
                 commodity.InvoiceID = lastInvoiceId;
                 Commodities.Add(commodity);
            }
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            SaveInvoice();
+            SaveCommodities();
+            mainWindow.InvoiceGrid.RefreshData();
+            this.Close();
         }
 
         private void SaveCommodities()

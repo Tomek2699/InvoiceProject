@@ -6,8 +6,8 @@
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:DataBase="clr-namespace:ProjectInvoice.DataBase"
     x:Class="ProjectInvoice.Views.NewInvoice"
-    Title="Nowa faktura" Height="755" Width="1101"
-    WindowStartupLocation="CenterOwner"
+    Title="Nowa faktura" Height="809" Width="850"
+    WindowStartupLocation="CenterOwner" MinWidth="1098" MinHeight="755" Icon="{dx:DXImage SvgImages/Business Objects/BO_Report.svg}"
     >
     <dx:ThemedWindow.DataContext>
         <DataBase:ViewModel/>
@@ -15,47 +15,27 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="632*"/>
-            <ColumnDefinition Width="409*"/>
-            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="596*"/>
+            <ColumnDefinition Width="503*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="NoInvoice" Content="Nr Faktury:" HorizontalAlignment="Left" Margin="79,36,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
 
         <dxe:TextEdit x:Name="textBoxNoInvoice" HorizontalAlignment="Left" Margin="169,36,0,0" VerticalAlignment="Top" Width="134" Height="27" Validate="textBoxNoInvoice_Validate"/>
-        <Label x:Name="Seller" Content="Sprzedawca" HorizontalAlignment="Left" Margin="121,106,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
-        <ComboBox x:Name="comboBoxSeller" HorizontalAlignment="Left" Margin="260,114,0,0" VerticalAlignment="Top" Width="209" SelectedItem="{Binding CompanyID}" DisplayMemberPath="CompanyName" SelectionChanged="comboBoxSellerSelected"/>
-        <Label x:Name="Buyer" Content="Nabywca" HorizontalAlignment="Left" Margin="9,106,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
-        <ComboBox x:Name="comboBoxBuyer" HorizontalAlignment="Left" Margin="117,114,0,0" VerticalAlignment="Top" Width="210" SelectedItem="{Binding ForeignCompanyID}" DisplayMemberPath="CompanyName" SelectionChanged="comboBoxBuyerSelected" Grid.Column="1"/>
-        <Label x:Name="SellerAddress" Content="Adres:" HorizontalAlignment="Left" Margin="121,162,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <dxe:TextEdit x:Name="textBoxSellerAddress" HorizontalAlignment="Left" Margin="173,165,0,0" VerticalAlignment="Top" Width="250" Height="40" TextWrapping="Wrap" IsReadOnly="True"/>
-        <Label x:Name="SellerNIP" Content="NIP:" HorizontalAlignment="Left" Margin="121,216,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <dxe:TextEdit x:Name="textBoxSellerNIP" HorizontalAlignment="Left" Margin="158,219,0,0" VerticalAlignment="Top" Width="159" IsReadOnly="True"/>
-        <Label x:Name="SellerPhoneNumber" Content="Nr telefonu:" HorizontalAlignment="Left" Margin="121,255,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <dxe:TextEdit x:Name="textBoxSellerPhoneNumber" HorizontalAlignment="Left" Margin="217,258,0,0" VerticalAlignment="Top" Width="108" IsReadOnly="True"/>
-
-        <Label x:Name="BuyerAddress" Content="Adres:" HorizontalAlignment="Left" Margin="9,162,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
-        <dxe:TextEdit x:Name="textBoxBuyerAddress" HorizontalAlignment="Left" Margin="61,165,0,0" VerticalAlignment="Top" Width="250" Height="40" TextWrapping="Wrap" IsReadOnly="True" Grid.Column="1"/>
-        <Label x:Name="BuyerNIP" Content="NIP:" HorizontalAlignment="Left" Margin="9,216,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
-        <dxe:TextEdit x:Name="textBoxBuyerNIP" HorizontalAlignment="Left" Margin="46,219,0,0" VerticalAlignment="Top" Width="159" IsReadOnly="True" Grid.Column="1"/>
-        <Label x:Name="BuyerPhoneNumber" Content="Nr telefonu:" HorizontalAlignment="Left" Margin="9,255,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
-        <dxe:TextEdit x:Name="textBoxBuyerPhoneNumber" HorizontalAlignment="Left" Margin="105,258,0,0" VerticalAlignment="Top" Width="108" IsReadOnly="True" Grid.Column="1"/>
-        <Label x:Name="StartDate" Content="Data wystawienia:" HorizontalAlignment="Left" Margin="121,319,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <Label x:Name="FinishDateDelivery" Content="Data zakończenia dostawy towaru:" HorizontalAlignment="Left" Margin="121,351,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <Label x:Name="PaymentDay" Content="Termin płatności:" HorizontalAlignment="Left" Margin="121,383,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <dxe:DateEdit x:Name="dateEditStartDate" HorizontalAlignment="Left" Margin="262,322,0,0" VerticalAlignment="Top" Width="135"/>
-        <dxe:DateEdit x:Name="dateEditFinishDateDelivery" HorizontalAlignment="Left" Margin="386,354,0,0" VerticalAlignment="Top" Width="135"/>
-        <dxe:DateEdit x:Name="dateEditPaymentDay" HorizontalAlignment="Left" Margin="255,386,0,0" VerticalAlignment="Top" Width="135"/>
-        <Label x:Name="PaymentWay" Content="Sposób płatności:" HorizontalAlignment="Left" Margin="9,319,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
-        <Label x:Name="BankName" Content="Nazwa banku:" HorizontalAlignment="Left" Margin="9,351,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
-        <Label x:Name="BankAccountNumber" Content="Nr konta bankowego:" HorizontalAlignment="Left" Margin="9,383,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
-        <ComboBox x:Name="comboBoxPaymentWay" HorizontalAlignment="Left" Margin="147,322,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1">
-            <ComboBoxItem Content="Przelew"/>
-            <ComboBoxItem Content="Gotówka"/>
-        </ComboBox>
-        <dxe:TextEdit x:Name="textBoxBankName" HorizontalAlignment="Left" Margin="120,354,0,0" VerticalAlignment="Top" Width="218" Grid.Column="1"/>
-        <dxe:TextEdit x:Name="textBoxBankAccountNumber" HorizontalAlignment="Left" Margin="177,386,0,0" VerticalAlignment="Top" Width="175" Grid.Column="1"/>
-        <dx:SimpleButton x:Name="btnSave" Content="Zapisz" HorizontalAlignment="Left" Height="31" Margin="317,698,0,0" VerticalAlignment="Top" Width="142" FontSize="16" FontWeight="Bold" Background="#FF00DA0D" Foreground="Black" Glyph="{dx:DXImage SvgImages/HybridDemoIcons/BottomPanel/HybridDemo_Save.svg}" ToolTip="Zapisz" Grid.ColumnSpan="2" Click="btnSave_Click" Grid.Column="1"/>
-        <dxg:GridControl x:Name="GridCommodities" Margin="53,484,53,68" ItemsSource="{Binding Commodities}" Grid.ColumnSpan="3">
+        <Label x:Name="Seller" Content="Sprzedawca" HorizontalAlignment="Left" Margin="151,106,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
+        <ComboBox x:Name="comboBoxSeller" HorizontalAlignment="Left" Margin="291,114,0,0" VerticalAlignment="Top" Width="209" SelectedItem="{Binding CompanyID}" DisplayMemberPath="CompanyName" SelectionChanged="comboBoxSellerSelected"/>
+        <Label x:Name="SellerAddress" Content="Adres:" HorizontalAlignment="Left" Margin="229,162,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <dxe:TextEdit x:Name="textBoxSellerAddress" HorizontalAlignment="Left" Margin="290,158,0,0" VerticalAlignment="Top" Width="250" Height="40" TextWrapping="Wrap" IsReadOnly="True"/>
+        <Label x:Name="SellerNIP" Content="NIP:" HorizontalAlignment="Left" Margin="244,208,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <dxe:TextEdit x:Name="textBoxSellerNIP" HorizontalAlignment="Left" Margin="290,210,0,0" VerticalAlignment="Top" Width="159" IsReadOnly="True"/>
+        <Label x:Name="SellerPhoneNumber" Content="Nr telefonu:" HorizontalAlignment="Left" Margin="185,255,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <dxe:TextEdit x:Name="textBoxSellerPhoneNumber" HorizontalAlignment="Left" Margin="290,260,0,0" VerticalAlignment="Top" Width="108" IsReadOnly="True"/>
+        <Label x:Name="StartDate" Content="Data wystawienia:" HorizontalAlignment="Left" Margin="140,297,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="FinishDateDelivery" Content="Data zakończenia dostawy towaru:" HorizontalAlignment="Left" Margin="16,332,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="PaymentDay" Content="Termin płatności:" HorizontalAlignment="Left" Margin="147,367,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <dxe:DateEdit x:Name="dateEditStartDate" HorizontalAlignment="Left" Margin="290,302,0,0" VerticalAlignment="Top" Width="135"/>
+        <dxe:DateEdit x:Name="dateEditFinishDateDelivery" HorizontalAlignment="Left" Margin="290,337,0,0" VerticalAlignment="Top" Width="135"/>
+        <dxe:DateEdit x:Name="dateEditPaymentDay" HorizontalAlignment="Left" Margin="290,372,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.489,-0.271"/>
+        <dxg:GridControl x:Name="GridCommodities" Margin="53,484,53,68" ItemsSource="{Binding Commodities}" Grid.ColumnSpan="2">
             <dxg:GridControl.DataContext>
                 <DataBase:CommodityModel/>
             </dxg:GridControl.DataContext>
@@ -71,6 +51,24 @@
             <dxg:GridColumn Header="Kwota VAT" FieldName="AmountVAT" IsSmart="True"/>
             <dxg:GridColumn Header="Kwota Brutto" FieldName="AmountBrutto" IsSmart="True"/>
         </dxg:GridControl>
+        <Label x:Name="Buyer" Content="Nabywca" HorizontalAlignment="Left" Margin="110,106,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
+        <ComboBox x:Name="comboBoxBuyer" HorizontalAlignment="Left" Margin="222,114,0,0" VerticalAlignment="Top" Width="210" SelectedItem="{Binding ForeignCompanyID}" DisplayMemberPath="CompanyName" SelectionChanged="comboBoxBuyerSelected" Grid.Column="1"/>
+        <Label x:Name="BuyerAddress" Content="Adres:" HorizontalAlignment="Left" Margin="166,162,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="1.031,0.401" Grid.Column="1"/>
+        <dxe:TextEdit x:Name="textBoxBuyerAddress" HorizontalAlignment="Left" Margin="230,158,0,0" VerticalAlignment="Top" Width="250" Height="40" TextWrapping="Wrap" IsReadOnly="True" Grid.Column="1"/>
+        <Label x:Name="BuyerNIP" Content="NIP:" HorizontalAlignment="Left" Margin="182,208,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
+        <dxe:TextEdit x:Name="textBoxBuyerNIP" HorizontalAlignment="Left" Margin="230,210,0,0" VerticalAlignment="Top" Width="159" IsReadOnly="True" Grid.Column="1"/>
+        <Label x:Name="BuyerPhoneNumber" Content="Nr telefonu:" HorizontalAlignment="Left" Margin="122,255,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
+        <dxe:TextEdit x:Name="textBoxBuyerPhoneNumber" HorizontalAlignment="Left" Margin="230,260,0,0" VerticalAlignment="Top" Width="108" IsReadOnly="True" Grid.Column="1"/>
+        <Label x:Name="PaymentWay" Content="Sposób płatności:" HorizontalAlignment="Left" Margin="80,297,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
+        <Label x:Name="BankName" Content="Nazwa banku:" HorizontalAlignment="Left" Margin="106,333,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
+        <Label x:Name="BankAccountNumber" Content="Nr konta bankowego:" HorizontalAlignment="Left" Margin="50,364,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
+        <ComboBox x:Name="comboBoxPaymentWay" HorizontalAlignment="Left" Margin="230,302,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1">
+            <ComboBoxItem Content="Przelew"/>
+            <ComboBoxItem Content="Gotówka"/>
+        </ComboBox>
+        <dxe:TextEdit x:Name="textBoxBankName" HorizontalAlignment="Left" Margin="230,338,0,0" VerticalAlignment="Top" Width="218" Grid.Column="1"/>
+        <dxe:TextEdit x:Name="textBoxBankAccountNumber" HorizontalAlignment="Left" Margin="230,369,0,0" VerticalAlignment="Top" Width="175" Grid.Column="1"/>
+        <dx:SimpleButton x:Name="btnSave" Content="Zapisz" HorizontalAlignment="Left" Height="32" Margin="351,751,0,0" VerticalAlignment="Top" Width="142" FontSize="16" FontWeight="Bold" Background="#FF00DA0D" Foreground="Black" Glyph="{dx:DXImage SvgImages/HybridDemoIcons/BottomPanel/HybridDemo_Save.svg}" ToolTip="Zapisz" Grid.Column="1" Click="btnSave_Click"/>
 
 
     </Grid>
