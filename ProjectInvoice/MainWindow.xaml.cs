@@ -1,6 +1,8 @@
 ﻿using DevExpress.Xpf.Core;
 using ProjectInvoice.DataBase;
+using ProjectInvoice.Services;
 using ProjectInvoice.Views;
+using ProjectInvoice.Views.EditInvoice;
 using ProjectInvoice.Views.NewContractor;
 using ProjectInvoice.Views.NewOurCompany;
 using System;
@@ -11,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -24,6 +27,10 @@ namespace ProjectInvoice
     /// </summary>
     public partial class MainWindow : ThemedWindow
     {
+        InvoiceService invoiceService = new InvoiceService();
+        OurCompaniesService ourCompanyService = new OurCompaniesService();
+        ForeignCompaniesService foreignCompanyService = new ForeignCompaniesService();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -67,6 +74,66 @@ namespace ProjectInvoice
                 TabControl.ShowTabItem(CompanyTab, true);
                 InvoiceTab.Visibility = Visibility.Hidden;
                 CompanyTab.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void InvoiceGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedRow = GridControlInvoice.SelectedItem as Invoice;
+
+            if(selectedRow != null)
+            {
+
+                EditModel editModel = new EditModel()
+                {
+                    InvoiceID = selectedRow.InvoiceID,
+                    CompanyID = selectedRow.CompanyID,
+                    ForeignCompanyID = selectedRow.ForeignCompanyID,
+                    NoInvoice = selectedRow.NoInvoice,
+                    StartDate = selectedRow.StartDate,
+                    FinishDateDelivery = selectedRow.FinishDateDelivery,
+                    PaymentDate = selectedRow.PaymentDate,
+                    IsPay = selectedRow.IsPay,
+                };
+                EditInvoice editInvoiceWindow = new EditInvoice(editModel);
+                editInvoiceWindow.Owner = this;
+                editInvoiceWindow.ShowDialog();
+            }
+        }
+
+        private void deleteInvoice_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+            var row = GridControlInvoice.GetFocusedRow() as Invoice;
+           if(MessageBox.Show("Czy na pewno chcesz usunąć fakturę?", "Usuwanie faktury", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+           {
+               if (row != null)
+               {
+                   invoiceService.Delete(row.InvoiceID);
+               }
+           }  
+        }
+
+        private void deleteOurCompany_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+            var row = GridControlOurCompany.GetFocusedRow() as OurCompany;
+            if(MessageBox.Show("Czy na pewno chcesz usunąć swoją firmę?", "Usuwanie swojej firmy", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                if (row != null)
+                {
+                    ourCompanyService.Delete(row.CompanyID);
+                }
+            }
+        }
+
+        private void deleteForeignCompany_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+            var row = GridControlForeignCompany.GetFocusedRow() as ForeignCompany;
+            if(MessageBox.Show("Czy na pewno chcesz usunąć obcą firmę?", "Usuwanie obcej firmy", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                if (row != null)
+                {
+                    foreignCompanyService.Delete(row.ForeignCompanyID);
+                }
             }
         }
     }

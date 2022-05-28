@@ -21,5 +21,15 @@ namespace ProjectInvoice.Services
         {
             return db.ForeignCompanies.ToList();
         }
+
+        public void Delete(int foreignCompanyId)
+        {
+            var item = db.ForeignCompanies.Find(foreignCompanyId);
+            if(item.Invoice.Count() == 0)
+            {
+                db.ForeignCompanies.Remove(item);
+                db.SaveChanges();
+            }
+        }
     }
 }

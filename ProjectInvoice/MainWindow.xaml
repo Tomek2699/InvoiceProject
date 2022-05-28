@@ -19,13 +19,18 @@
                     <dxr:RibbonPageGroup Caption="Faktura">
                         <dxb:BarButtonItem x:Name="newInvoice" Content="Nowa faktura" ToolTip="Uwtórz nową fakturę" Glyph="{dx:DXImage SvgImages/Actions/New.svg}" RibbonStyle="Large" Padding="20,5,20,10" ItemClick="CreateInvoice" />
                     </dxr:RibbonPageGroup>
+                    <dxr:RibbonPageGroup Caption="Usuwanie">
+                        <dxb:BarButtonItem x:Name="deleteInvoice" Content="Usuń fakturę" ToolTip="Usuń fakturę" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_DeleteCircled.svg}" RibbonStyle="Large" Padding="20,5,20,10" ItemClick="deleteInvoice_ItemClick" />
+                    </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
                 <dxr:RibbonPage x:Name="CompanyPage" Caption="Firmy">
                     <dxr:RibbonPageGroup Caption="Własna firma">
                         <dxb:BarButtonItem x:Name="newOurCompany" Content="Nowa firma" ToolTip="Dodaj swoją nową firmę" Glyph="{dx:DXImage SvgImages/Business Objects/BO_Person.svg}" RibbonStyle="Large" Padding="20,5,20,10" ItemClick="CreateNewOurCompany"/>
+                        <dxb:BarButtonItem x:Name="deleteOurCompany" Content="Usuń własną firmę" ToolTip="Usuń fakturę" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_DeleteCircled.svg}" RibbonStyle="Large" Padding="20,5,20,10" ItemClick="deleteOurCompany_ItemClick"/>
                     </dxr:RibbonPageGroup>
                     <dxr:RibbonPageGroup Caption="Kontrahent">
                         <dxb:BarButtonItem x:Name="newForeignCompany" Content="Nowy kontrahent" ToolTip="Dodaj nowego kontrahent" Glyph="{dx:DXImage SvgImages/Business Objects/BO_Customer.svg}" RibbonStyle="Large" Padding="20,5,20,10" ItemClick="CreateNewContractor"/>
+                        <dxb:BarButtonItem x:Name="deleteForeignCompany" Content="Usuń obcą firmę" ToolTip="Usuń fakturę" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_DeleteCircled.svg}" RibbonStyle="Large" Padding="20,5,20,10" ItemClick="deleteForeignCompany_ItemClick"/>
                     </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
             </dxr:RibbonDefaultPageCategory>
@@ -36,9 +41,9 @@
                     <dxdo:DockLayoutManager>
                         <dxdo:LayoutGroup Caption="LayoutRoot">
                             <dxdo:LayoutPanel x:Name="InvoicePanel" ShowBorder="False" ShowPinButton="False" ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                                <dxg:GridControl x:Name="InvoiceGrid" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding Invoices}" Panel.ZIndex="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+                                <dxg:GridControl x:Name="GridControlInvoice" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding Invoices}" Panel.ZIndex="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Visible" MouseDoubleClick="InvoiceGrid_MouseDoubleClick">
                                     <dxg:GridControl.View>
-                                        <dxg:TableView Height="622" VerticalAlignment="Stretch" VerticalScrollbarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Visible" HorizontalScrollbarVisibility="Auto" HeaderHorizontalAlignment="Left" HorizontalAlignment="Stretch"/>
+                                        <dxg:TableView x:Name="InvoiceGridView" Height="622" VerticalAlignment="Stretch" VerticalScrollbarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Visible" HorizontalScrollbarVisibility="Auto" HeaderHorizontalAlignment="Left" HorizontalAlignment="Stretch"/>
                                     </dxg:GridControl.View>
                                     <dxg:GridColumn FieldName="InvoiceID" Header="ID" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
                                     <dxg:GridColumn x:Name="columnCompanyID" FieldName="CompanyID" IsSmart="True" HorizontalHeaderContentAlignment="Center"/>
@@ -63,7 +68,7 @@
                         <dxdo:LayoutGroup Caption="LayoutRoot">
                             <dxdo:LayoutGroup Orientation="Horizontal">
                                 <dxdo:LayoutPanel ShowPinButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False" ShowCloseButton="False" ShowBorder="False">
-                                    <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding OurCompanies}">
+                                    <dxg:GridControl x:Name="GridControlOurCompany" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding OurCompanies}">
                                         <dxg:GridControl.View>
                                             <dxg:TableView/>
                                         </dxg:GridControl.View>
@@ -77,7 +82,7 @@
                                     </dxg:GridControl>
                                 </dxdo:LayoutPanel>
                                 <dxdo:LayoutPanel ShowPinButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False" ShowCloseButton="False" ShowBorder="False">
-                                    <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding ForeignCompanies}">
+                                    <dxg:GridControl x:Name="GridControlForeignCompany" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding ForeignCompanies}">
                                         <dxg:GridControl.View>
                                             <dxg:TableView/>
                                         </dxg:GridControl.View>

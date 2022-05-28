@@ -6,8 +6,8 @@
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:DataBase="clr-namespace:ProjectInvoice.DataBase"
     x:Class="ProjectInvoice.Views.NewInvoice"
-    Title="Nowa faktura" Height="809" Width="850"
-    WindowStartupLocation="CenterOwner" MinWidth="1098" MinHeight="755" Icon="{dx:DXImage SvgImages/Business Objects/BO_Report.svg}"
+    Title="Nowa faktura" Height="755" Width="1098"
+    WindowStartupLocation="CenterOwner" MinWidth="1098" MinHeight="755" MaxWidth="1098" MaxHeight="755" Icon="{dx:DXImage SvgImages/Business Objects/BO_Report.svg}" ControlBoxButtonSet="Close"
     >
     <dx:ThemedWindow.DataContext>
         <DataBase:ViewModel/>
@@ -68,7 +68,7 @@
         </ComboBox>
         <dxe:TextEdit x:Name="textBoxBankName" HorizontalAlignment="Left" Margin="230,338,0,0" VerticalAlignment="Top" Width="218" Grid.Column="1"/>
         <dxe:TextEdit x:Name="textBoxBankAccountNumber" HorizontalAlignment="Left" Margin="230,369,0,0" VerticalAlignment="Top" Width="175" Grid.Column="1"/>
-        <dx:SimpleButton x:Name="btnSave" Content="Zapisz" HorizontalAlignment="Left" Height="32" Margin="351,751,0,0" VerticalAlignment="Top" Width="142" FontSize="16" FontWeight="Bold" Background="#FF00DA0D" Foreground="Black" Glyph="{dx:DXImage SvgImages/HybridDemoIcons/BottomPanel/HybridDemo_Save.svg}" ToolTip="Zapisz" Grid.Column="1" Click="btnSave_Click"/>
+        <dx:SimpleButton x:Name="btnSave" Content="Zapisz" HorizontalAlignment="Left" Height="32" Margin="335,679,0,0" VerticalAlignment="Top" Width="142" FontSize="16" FontWeight="Bold" Background="#FF00DA0D" Foreground="Black" Glyph="{dx:DXImage SvgImages/HybridDemoIcons/BottomPanel/HybridDemo_Save.svg}" ToolTip="Zapisz" Grid.Column="1" Click="btnSave_Click"/>
 
 
     </Grid>

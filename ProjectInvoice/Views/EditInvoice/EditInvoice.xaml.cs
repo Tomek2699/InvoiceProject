@@ -15,28 +15,32 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 
-namespace ProjectInvoice.Views
+namespace ProjectInvoice.Views.EditInvoice
 {
-    /// <summary>
-    /// Interaction logic for NewInvoice.xaml
-    /// </summary>
-    public partial class NewInvoice : ThemedWindow
+    public partial class EditInvoice : ThemedWindow
     {
         ForeignCompaniesService foreignCompaniesService = new ForeignCompaniesService();
         OurCompaniesService ourCompaniesService = new OurCompaniesService();
         CommoditiesService commoditiesService = new CommoditiesService();
         ProjectInvoiceEntities dbContext = new ProjectInvoiceEntities();
         InvoiceService invoiceService = new InvoiceService();
-        MainWindow mainWindow = new MainWindow();
-        private List<Commodity> Commodities { get; set; } = new List<Commodity>();
-        public NewInvoice()
+        private EditModel model {get;set;}
+        public EditInvoice(EditModel item)
         {
             InitializeComponent();
+            model = item;
             SetData();
         }
 
-        public void SetData()
+        private void SetData()
         {
+            textBoxNoInvoice.Text = model.NoInvoice;
+            comboBoxSeller.SelectedValue = model.CompanyID;
+            comboBoxBuyer.SelectedItem = model.ForeignCompanyID;
+            dateEditStartDate.DateTime = model.StartDate;
+            dateEditFinishDateDelivery.DateTime = model.FinishDateDelivery;
+            dateEditPaymentDay.DateTime = model.PaymentDate;
+            comboBoxPaymentWay.SelectedItem = model.PaymentWay;
             comboBoxSeller.ItemsSource = ourCompaniesService.GetAll();
             comboBoxBuyer.ItemsSource = foreignCompaniesService.GetAll();
         }
@@ -59,56 +63,12 @@ namespace ProjectInvoice.Views
         {
             var selectedValue = comboBoxBuyer.SelectedValue as ForeignCompany;
 
-            if(selectedValue != null)
+            if (selectedValue != null)
             {
                 textBoxBuyerAddress.Text = selectedValue.Address;
                 textBoxBuyerNIP.Text = selectedValue.NIP;
                 textBoxBuyerPhoneNumber.Text = selectedValue.PhoneNumber;
             }
-        }
-
-        private void SaveInvoice()
-        {
-            var ourCompany = comboBoxSeller.SelectedItem as OurCompany;
-            var foreignCompany = comboBoxBuyer.SelectedItem as ForeignCompany;
-
-            Invoice invoice = new Invoice()
-            {
-                InvoiceID = dbContext.Invoices.Count(),
-                CompanyID = ourCompany.CompanyID,
-                ForeignCompanyID = foreignCompany.ForeignCompanyID,
-                NoInvoice = textBoxNoInvoice.Text,
-                StartDate = dateEditStartDate.DateTime,
-                FinishDateDelivery = dateEditFinishDateDelivery.DateTime,
-                PaymentDate = dateEditPaymentDay.DateTime,
-                PaymentWay = comboBoxPaymentWay.Text,
-                IsPay = false,
-            };
-            invoiceService.Save(invoice);
-        }
-
-        private void CommoditiesUpdate(object sender, DevExpress.Xpf.Grid.RowEventArgs e)
-        {
-           int lastInvoiceId = dbContext.Invoices.Count() + 1;
-           var commodity = e.Row as Commodity;
-           if (commodity != null)
-           {
-                commodity.InvoiceID = lastInvoiceId;
-                Commodities.Add(commodity);
-           }
-        }
-
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            SaveInvoice();
-            SaveCommodities();
-            mainWindow.GridControlInvoice.RefreshData();
-            this.Close();
-        }
-
-        private void SaveCommodities()
-        {
-            commoditiesService.Save(Commodities);
         }
 
         private void textBoxNoInvoice_Validate(object sender, DevExpress.Xpf.Editors.ValidationEventArgs e)

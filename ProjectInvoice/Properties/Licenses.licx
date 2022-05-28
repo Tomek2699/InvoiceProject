@@ -5,3 +5,6 @@ DevExpress.Xpf.Editors.ComboBoxEdit, DevExpress.Xpf.Core.v21.2, Version=21.2.7.0
 DevExpress.Xpf.Editors.DateEdit, DevExpress.Xpf.Core.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.Xpf.Core.DXTabControl, DevExpress.Xpf.Core.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.Xpf.Docking.DockLayoutManager, DevExpress.Xpf.Docking.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.Xpf.LayoutControl.LayoutGroup, DevExpress.Xpf.LayoutControl.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.Xpf.LayoutControl.LayoutControl, DevExpress.Xpf.LayoutControl.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.Xpf.LayoutControl.DockLayoutControl, DevExpress.Xpf.LayoutControl.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a

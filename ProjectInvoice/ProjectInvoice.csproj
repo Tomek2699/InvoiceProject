@@ -123,6 +123,10 @@
     <Compile Include="Services\ForeignCompaniesService.cs" />
     <Compile Include="Services\InvoiceService.cs" />
     <Compile Include="Services\OurCompaniesService.cs" />
+    <Compile Include="Views\EditInvoice\EditInvoice.xaml.cs">
+      <DependentUpon>EditInvoice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditInvoice\EditModel.cs" />
     <Compile Include="Views\NewForeignCompany\NewForeignCompany.xaml.cs">
       <DependentUpon>NewForeignCompany.xaml</DependentUpon>
     </Compile>
@@ -144,6 +148,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\EditInvoice\EditInvoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NewForeignCompany\NewForeignCompany.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
