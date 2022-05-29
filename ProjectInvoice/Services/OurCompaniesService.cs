@@ -17,6 +17,11 @@ namespace ProjectInvoice.Services
             return true;
         }
 
+        public OurCompany FindOne(int ourCompanyId)
+        {
+            return db.OurCompanies.Find(ourCompanyId);
+        }
+
         public List<OurCompany> GetAll()
         {
             return db.OurCompanies.ToList();

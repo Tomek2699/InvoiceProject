@@ -126,16 +126,20 @@
     <Compile Include="Views\EditInvoice\EditInvoice.xaml.cs">
       <DependentUpon>EditInvoice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditInvoice\EditModel.cs" />
+    <Compile Include="Views\EditInvoice\EditInvoiceModel.cs" />
+    <Compile Include="Views\EditInvoice\EditInvoiceValidationModel.cs" />
+    <Compile Include="Views\NewForeignCompany\ForeignCompanyValidationModel.cs" />
     <Compile Include="Views\NewForeignCompany\NewForeignCompany.xaml.cs">
       <DependentUpon>NewForeignCompany.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NewInvoice\InvoiceValidationModel.cs" />
     <Compile Include="Views\NewInvoice\NewInvoice.xaml.cs">
       <DependentUpon>NewInvoice.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewOurCompany\NewOurCompany.xaml.cs">
       <DependentUpon>NewOurCompany.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NewOurCompany\OurCompanyValidationModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

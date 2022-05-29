@@ -27,7 +27,7 @@
         <dxe:TextEdit x:Name="textBoxBankName" HorizontalAlignment="Left" Margin="270,263,0,0" VerticalAlignment="Top" Width="429" Height="27" Validate="textBoxBankName_Validate" TextWrapping="Wrap"/>
         <dxe:TextEdit x:Name="textBoxBankAccountNumber" HorizontalAlignment="Left" Margin="270,309,0,0" VerticalAlignment="Top" Width="334" Height="27" Validate="textBoxBankAccountNumber_Validate"/>
         <dxe:TextEdit x:Name="textBoxPhoneNumber" HorizontalAlignment="Left" Margin="272,367,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.7,0.593" Width="162" Height="25" TextWrapping="Wrap" Validate="textBoxPhoneNumber_Validate"/>
-        <dx:SimpleButton x:Name="btnSave" Content="Zapisz" HorizontalAlignment="Left" Height="31" Margin="557,411,0,0" VerticalAlignment="Top" Width="142" FontSize="16" FontWeight="Bold" Background="#FF00DA0D" Foreground="Black" Glyph="{dx:DXImage SvgImages/HybridDemoIcons/BottomPanel/HybridDemo_Save.svg}" ToolTip="Zapisz" Click="Save" RenderTransformOrigin="0.491,-0.704"/>
+        <dx:SimpleButton x:Name="btnSave" Content="Zapisz" HorizontalAlignment="Left" Height="31" Margin="557,411,0,0" VerticalAlignment="Top" Width="142" FontSize="16" FontWeight="Bold" Background="#FF00DA0D" Foreground="Black" Glyph="{dx:DXImage SvgImages/HybridDemoIcons/BottomPanel/HybridDemo_Save.svg}" ToolTip="Zapisz" RenderTransformOrigin="0.491,-0.704" Click="btnSave_Click"/>
 
     </Grid>
 </dx:ThemedWindow>

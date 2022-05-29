@@ -23,13 +23,14 @@ namespace ProjectInvoice.Views.NewOurCompany
     public partial class NewOurCompany : ThemedWindow
     {
         OurCompaniesService companyService = new OurCompaniesService();
+        OurCompanyValidationModel validationModel = new OurCompanyValidationModel();
         public NewOurCompany()
         {
             InitializeComponent();
             btnSave.IsEnabled = false;
         }
 
-        private void Save(object sender, RoutedEventArgs e)
+        private void Save()
         {
             OurCompany company = new OurCompany()
             {
@@ -41,9 +42,32 @@ namespace ProjectInvoice.Views.NewOurCompany
                 BankAccountNumber = textBoxBankAccountNumber.Text,
             };
 
-            if(companyService.Save(company))
+            companyService.Save(company);
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if(Validation())
             {
+                Save();
                 this.Close();
+            }
+        }
+
+
+
+        private bool Validation()
+        {
+            if (validationModel.Companyname && validationModel.Address && validationModel.NIP && validationModel.BankName
+                && validationModel.BankAccountNumber && validationModel.PhoneNumber)
+            {
+                btnSave.IsEnabled = true;
+                return true;
+            }
+            else
+            {
+                btnSave.IsEnabled = false;
+                return false;
             }
         }
 
@@ -55,6 +79,7 @@ namespace ProjectInvoice.Views.NewOurCompany
                     "Nazwa firmy nie może być pusta",
                     DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
                 );
+                validationModel.Companyname = false;
                 btnSave.IsEnabled = false;
 
             }
@@ -64,7 +89,13 @@ namespace ProjectInvoice.Views.NewOurCompany
                     "Nazwa firmy nie może być dłuższa niż 100 znaków",
                     DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
                 );
+                validationModel.Companyname = false;
                 btnSave.IsEnabled = false;
+            }
+            else
+            {
+                validationModel.Companyname = true;
+                btnSave.IsEnabled = true;
             }
         }
 
@@ -76,6 +107,7 @@ namespace ProjectInvoice.Views.NewOurCompany
                     "Adres firmy nie może być pusty",
                     DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
                 );
+                validationModel.Address = false;
                 btnSave.IsEnabled = false;
 
             }
@@ -85,7 +117,13 @@ namespace ProjectInvoice.Views.NewOurCompany
                     "Adres nie może być dłuższy niż 200 znaków",
                     DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
                 );
+                validationModel.Address = false;
                 btnSave.IsEnabled = false;
+            }
+            else
+            {
+                validationModel.Address = true;
+                btnSave.IsEnabled = true;
             }
         }
 
@@ -97,6 +135,7 @@ namespace ProjectInvoice.Views.NewOurCompany
                     "NIP nie może być pusty",
                     DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
                 );
+                validationModel.NIP = false;
                 btnSave.IsEnabled = false;
 
             }
@@ -106,7 +145,13 @@ namespace ProjectInvoice.Views.NewOurCompany
                     "Nazwa nie może być dłuższa niż 20 znaków",
                     DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
                 );
+                validationModel.NIP = false;
                 btnSave.IsEnabled = false;
+            }
+            else
+            {
+                validationModel.NIP = true;
+                btnSave.IsEnabled = true;
             }
         }
 
@@ -118,6 +163,7 @@ namespace ProjectInvoice.Views.NewOurCompany
                     "Nazwa banku nie może być pusta",
                     DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
                 );
+                validationModel.BankName = false;
                 btnSave.IsEnabled = false;
 
             }
@@ -127,7 +173,13 @@ namespace ProjectInvoice.Views.NewOurCompany
                     "Nazwa nie może być dłuższa niż 50 znaków",
                     DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
                 );
+                validationModel.BankName = false;
                 btnSave.IsEnabled = false;
+            }
+            else
+            {
+                validationModel.BankName = true;
+                btnSave.IsEnabled = true;
             }
         }
 
@@ -139,6 +191,7 @@ namespace ProjectInvoice.Views.NewOurCompany
                     "Numer konta bankowego nie może być pusty",
                     DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
                 );
+                validationModel.BankAccountNumber = false;
                 btnSave.IsEnabled = false;
 
             }
@@ -148,7 +201,13 @@ namespace ProjectInvoice.Views.NewOurCompany
                     "Numer konta bankowego nie może być dłuższy niż 100 znaków",
                     DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
                 );
+                validationModel.BankAccountNumber = false;
                 btnSave.IsEnabled = false;
+            }
+            else
+            {
+                validationModel.BankAccountNumber = true;
+                btnSave.IsEnabled = true;
             }
         }
 
@@ -160,6 +219,7 @@ namespace ProjectInvoice.Views.NewOurCompany
                     "Numer telefonu nie może być pusty",
                     DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
                 );
+                validationModel.PhoneNumber = false;
                 btnSave.IsEnabled = false;
 
             }
@@ -169,10 +229,12 @@ namespace ProjectInvoice.Views.NewOurCompany
                     "Numer telefonu nie może być dłuższy niż 9 znaków",
                     DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
                 );
+                validationModel.PhoneNumber = false;
                 btnSave.IsEnabled = false;
             }
             else
             {
+                validationModel.PhoneNumber = true;
                 btnSave.IsEnabled = true;
             }
         }

@@ -24,9 +24,9 @@
         <Label x:Name="StartDate" Content="Data wystawienia:" HorizontalAlignment="Left" Margin="140,297,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
         <Label x:Name="FinishDateDelivery" Content="Data zakończenia dostawy towaru:" HorizontalAlignment="Left" Margin="16,332,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
         <Label x:Name="PaymentDay" Content="Termin płatności:" HorizontalAlignment="Left" Margin="147,367,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <dxe:DateEdit x:Name="dateEditStartDate" HorizontalAlignment="Left" Margin="290,302,0,0" VerticalAlignment="Top" Width="135"/>
-        <dxe:DateEdit x:Name="dateEditFinishDateDelivery" HorizontalAlignment="Left" Margin="290,337,0,0" VerticalAlignment="Top" Width="135"/>
-        <dxe:DateEdit x:Name="dateEditPaymentDay" HorizontalAlignment="Left" Margin="290,372,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.489,-0.271"/>
+        <dxe:DateEdit x:Name="dateEditStartDate" HorizontalAlignment="Left" Margin="290,302,0,0" VerticalAlignment="Top" Width="135" Validate="dateEditStartDate_Validate"/>
+        <dxe:DateEdit x:Name="dateEditFinishDateDelivery" HorizontalAlignment="Left" Margin="290,337,0,0" VerticalAlignment="Top" Width="135" Validate="dateEditFinishDateDelivery_Validate"/>
+        <dxe:DateEdit x:Name="dateEditPaymentDay" HorizontalAlignment="Left" Margin="290,372,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.489,-0.271" Validate="dateEditPaymentDay_Validate"/>
         <Label x:Name="Buyer" Content="Nabywca" HorizontalAlignment="Left" Margin="705,106,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
         <ComboBox x:Name="comboBoxBuyer" HorizontalAlignment="Left" Margin="817,114,0,0" VerticalAlignment="Top" Width="210" SelectedItem="{Binding ForeignCompanyID}" DisplayMemberPath="CompanyName" SelectionChanged="comboBoxBuyerSelected"/>
         <Label x:Name="BuyerAddress" Content="Adres:" HorizontalAlignment="Left" Margin="761,162,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="1.031,0.401"/>
@@ -42,8 +42,9 @@
             <ComboBoxItem Content="Przelew"/>
             <ComboBoxItem Content="Gotówka"/>
         </ComboBox>
-        <dxe:TextEdit x:Name="textBoxBankName" HorizontalAlignment="Left" Margin="825,338,0,0" VerticalAlignment="Top" Width="218"/>
-        <dxe:TextEdit x:Name="textBoxBankAccountNumber" HorizontalAlignment="Left" Margin="825,369,0,0" VerticalAlignment="Top" Width="175"/>
+        <dxe:TextEdit x:Name="textBoxBankName" HorizontalAlignment="Left" Margin="825,338,0,0" VerticalAlignment="Top" Width="218" IsReadOnly="True"/>
+        <dxe:TextEdit x:Name="textBoxBankAccountNumber" HorizontalAlignment="Left" Margin="825,369,0,0" VerticalAlignment="Top" Width="175" IsReadOnly="True"/>
+        <dx:SimpleButton x:Name="btnSave" Content="Zapisz" HorizontalAlignment="Left" Height="31" Margin="946,698,0,0" VerticalAlignment="Top" Width="142" FontSize="16" FontWeight="Bold" Background="#FF00DA0D" Foreground="Black" Glyph="{dx:DXImage SvgImages/HybridDemoIcons/BottomPanel/HybridDemo_Save.svg}" ToolTip="Zapisz" Click="btnSave_Click"/>
 
     </Grid>
 </dx:ThemedWindow>

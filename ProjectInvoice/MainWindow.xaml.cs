@@ -84,7 +84,7 @@ namespace ProjectInvoice
             if(selectedRow != null)
             {
 
-                EditModel editModel = new EditModel()
+                EditInvoiceModel editModel = new EditInvoiceModel()
                 {
                     InvoiceID = selectedRow.InvoiceID,
                     CompanyID = selectedRow.CompanyID,

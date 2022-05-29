@@ -32,9 +32,9 @@
         <Label x:Name="StartDate" Content="Data wystawienia:" HorizontalAlignment="Left" Margin="140,297,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
         <Label x:Name="FinishDateDelivery" Content="Data zakończenia dostawy towaru:" HorizontalAlignment="Left" Margin="16,332,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
         <Label x:Name="PaymentDay" Content="Termin płatności:" HorizontalAlignment="Left" Margin="147,367,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <dxe:DateEdit x:Name="dateEditStartDate" HorizontalAlignment="Left" Margin="290,302,0,0" VerticalAlignment="Top" Width="135"/>
-        <dxe:DateEdit x:Name="dateEditFinishDateDelivery" HorizontalAlignment="Left" Margin="290,337,0,0" VerticalAlignment="Top" Width="135"/>
-        <dxe:DateEdit x:Name="dateEditPaymentDay" HorizontalAlignment="Left" Margin="290,372,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.489,-0.271"/>
+        <dxe:DateEdit x:Name="dateEditStartDate" HorizontalAlignment="Left" Margin="290,302,0,0" VerticalAlignment="Top" Width="135" Validate="dateEditStartDate_Validate"/>
+        <dxe:DateEdit x:Name="dateEditFinishDateDelivery" HorizontalAlignment="Left" Margin="290,337,0,0" VerticalAlignment="Top" Width="135" Validate="dateEditFinishDateDelivery_Validate"/>
+        <dxe:DateEdit x:Name="dateEditPaymentDay" HorizontalAlignment="Left" Margin="290,372,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.489,-0.271" Validate="dateEditPaymentDay_Validate"/>
         <dxg:GridControl x:Name="GridCommodities" Margin="53,484,53,68" ItemsSource="{Binding Commodities}" Grid.ColumnSpan="2">
             <dxg:GridControl.DataContext>
                 <DataBase:CommodityModel/>
@@ -66,8 +66,8 @@
             <ComboBoxItem Content="Przelew"/>
             <ComboBoxItem Content="Gotówka"/>
         </ComboBox>
-        <dxe:TextEdit x:Name="textBoxBankName" HorizontalAlignment="Left" Margin="230,338,0,0" VerticalAlignment="Top" Width="218" Grid.Column="1"/>
-        <dxe:TextEdit x:Name="textBoxBankAccountNumber" HorizontalAlignment="Left" Margin="230,369,0,0" VerticalAlignment="Top" Width="175" Grid.Column="1"/>
+        <dxe:TextEdit x:Name="textBoxBankName" HorizontalAlignment="Left" Margin="230,338,0,0" VerticalAlignment="Top" Width="218" Grid.Column="1" IsReadOnly="True"/>
+        <dxe:TextEdit x:Name="textBoxBankAccountNumber" HorizontalAlignment="Left" Margin="230,369,0,0" VerticalAlignment="Top" Width="175" Grid.Column="1" IsReadOnly="True"/>
         <dx:SimpleButton x:Name="btnSave" Content="Zapisz" HorizontalAlignment="Left" Height="32" Margin="335,679,0,0" VerticalAlignment="Top" Width="142" FontSize="16" FontWeight="Bold" Background="#FF00DA0D" Foreground="Black" Glyph="{dx:DXImage SvgImages/HybridDemoIcons/BottomPanel/HybridDemo_Save.svg}" ToolTip="Zapisz" Grid.Column="1" Click="btnSave_Click"/>
 
 
