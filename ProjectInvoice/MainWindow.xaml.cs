@@ -3,8 +3,10 @@ using ProjectInvoice.DataBase;
 using ProjectInvoice.Services;
 using ProjectInvoice.Views;
 using ProjectInvoice.Views.EditInvoice;
+using ProjectInvoice.Views.ForeignCompanyView.EditForeignCompany;
 using ProjectInvoice.Views.NewContractor;
 using ProjectInvoice.Views.NewOurCompany;
+using ProjectInvoice.Views.OurCompanyView.EditOurCompany;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,7 +79,7 @@ namespace ProjectInvoice
             }
         }
 
-        private void InvoiceGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void GridControlInvoice_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var selectedRow = GridControlInvoice.SelectedItem as Invoice;
 
@@ -135,6 +137,46 @@ namespace ProjectInvoice
                     foreignCompanyService.Delete(row.ForeignCompanyID);
                 }
             }
+        }
+
+        private void GridControlOurCompany_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedRow = GridControlOurCompany.SelectedItem as OurCompany;
+
+            EditOurCompanyModel editModel = new EditOurCompanyModel()
+            {
+                CompanyID = selectedRow.CompanyID,
+                CompanyName = selectedRow.CompanyName,
+                Address = selectedRow.Address,
+                NIP = selectedRow.NIP,
+                BankName = selectedRow.BankName,
+                BankAccountNumber = selectedRow.BankAccountNumber,
+                PhoneNumber = selectedRow.PhoneNumber,
+            };
+
+            EditOurCompany editOurCompanyWindow = new EditOurCompany(editModel);
+            editOurCompanyWindow.Owner = this;
+            editOurCompanyWindow.ShowDialog();
+        }
+
+        private void GridControlForeignCompany_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedRow = GridControlForeignCompany.SelectedItem as ForeignCompany;
+
+            EditForeignCompanyModel editModel = new EditForeignCompanyModel()
+            {
+                ForeignCompanyID = selectedRow.ForeignCompanyID,
+                CompanyName = selectedRow.CompanyName,
+                Address = selectedRow.Address,
+                NIP = selectedRow.NIP,
+                BankName = selectedRow.BankName,
+                BankAccountNumber = selectedRow.BankAccountNumber,
+                PhoneNumber = selectedRow.PhoneNumber,
+            };
+
+            EditForeignCompany editForeignCompanyWindow = new EditForeignCompany(editModel);
+            editForeignCompanyWindow.Owner = this;
+            editForeignCompanyWindow.ShowDialog();
         }
     }
 }

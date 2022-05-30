@@ -27,6 +27,41 @@ namespace ProjectInvoice.Services
             return db.ForeignCompanies.ToList();
         }
 
+        public void Edit(ForeignCompany foreignCompany)
+        {
+            if (foreignCompany != null)
+            {
+                ForeignCompany editForeignCompany = db.ForeignCompanies.Find(foreignCompany.ForeignCompanyID);
+
+                if (foreignCompany.CompanyName != null)
+                {
+                    editForeignCompany.CompanyName = foreignCompany.CompanyName;
+                }
+                if (foreignCompany.Address != null)
+                {
+                    editForeignCompany.Address = foreignCompany.Address;
+                }
+                if (foreignCompany.NIP != null)
+                {
+                    editForeignCompany.NIP = foreignCompany.NIP;
+                }
+                if (foreignCompany.BankName != null)
+                {
+                    editForeignCompany.BankName = foreignCompany.BankName;
+                }
+                if (foreignCompany.BankAccountNumber != null)
+                {
+                    editForeignCompany.BankAccountNumber = foreignCompany.BankAccountNumber;
+                }
+                if (foreignCompany.PhoneNumber != null)
+                {
+                    editForeignCompany.PhoneNumber = foreignCompany.PhoneNumber;
+                }
+
+                db.SaveChanges();
+            }
+        }
+
         public void Delete(int foreignCompanyId)
         {
             var item = db.ForeignCompanies.Find(foreignCompanyId);

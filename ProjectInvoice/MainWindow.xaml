@@ -41,7 +41,7 @@
                     <dxdo:DockLayoutManager>
                         <dxdo:LayoutGroup Caption="LayoutRoot">
                             <dxdo:LayoutPanel x:Name="InvoicePanel" ShowBorder="False" ShowPinButton="False" ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                                <dxg:GridControl x:Name="GridControlInvoice" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding Invoices}" Panel.ZIndex="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Visible" MouseDoubleClick="InvoiceGrid_MouseDoubleClick">
+                                <dxg:GridControl x:Name="GridControlInvoice" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding Invoices}" Panel.ZIndex="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Visible" MouseDoubleClick="GridControlInvoice_MouseDoubleClick">
                                     <dxg:GridControl.View>
                                         <dxg:TableView x:Name="InvoiceGridView" Height="622" VerticalAlignment="Stretch" VerticalScrollbarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Visible" HorizontalScrollbarVisibility="Auto" HeaderHorizontalAlignment="Left" HorizontalAlignment="Stretch"/>
                                     </dxg:GridControl.View>
@@ -68,7 +68,7 @@
                         <dxdo:LayoutGroup Caption="LayoutRoot">
                             <dxdo:LayoutGroup Orientation="Horizontal">
                                 <dxdo:LayoutPanel ShowPinButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False" ShowCloseButton="False" ShowBorder="False">
-                                    <dxg:GridControl x:Name="GridControlOurCompany" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding OurCompanies}">
+                                    <dxg:GridControl x:Name="GridControlOurCompany" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding OurCompanies}" MouseDoubleClick="GridControlOurCompany_MouseDoubleClick">
                                         <dxg:GridControl.View>
                                             <dxg:TableView/>
                                         </dxg:GridControl.View>
@@ -82,7 +82,7 @@
                                     </dxg:GridControl>
                                 </dxdo:LayoutPanel>
                                 <dxdo:LayoutPanel ShowPinButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False" ShowCloseButton="False" ShowBorder="False">
-                                    <dxg:GridControl x:Name="GridControlForeignCompany" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding ForeignCompanies}">
+                                    <dxg:GridControl x:Name="GridControlForeignCompany" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding ForeignCompanies}" MouseDoubleClick="GridControlForeignCompany_MouseDoubleClick">
                                         <dxg:GridControl.View>
                                             <dxg:TableView/>
                                         </dxg:GridControl.View>

@@ -123,23 +123,33 @@
     <Compile Include="Services\ForeignCompaniesService.cs" />
     <Compile Include="Services\InvoiceService.cs" />
     <Compile Include="Services\OurCompaniesService.cs" />
-    <Compile Include="Views\EditInvoice\EditInvoice.xaml.cs">
+    <Compile Include="Views\ForeignCompanyView\EditForeignCompany\EditForeignCompany.xaml.cs">
+      <DependentUpon>EditForeignCompany.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ForeignCompanyView\EditForeignCompany\EditForeignCompanyModel.cs" />
+    <Compile Include="Views\ForeignCompanyView\EditForeignCompany\EditForeignCompanyValidationModel.cs" />
+    <Compile Include="Views\InvoiceView\EditInvoice\EditInvoice.xaml.cs">
       <DependentUpon>EditInvoice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditInvoice\EditInvoiceModel.cs" />
-    <Compile Include="Views\EditInvoice\EditInvoiceValidationModel.cs" />
-    <Compile Include="Views\NewForeignCompany\ForeignCompanyValidationModel.cs" />
-    <Compile Include="Views\NewForeignCompany\NewForeignCompany.xaml.cs">
+    <Compile Include="Views\InvoiceView\EditInvoice\EditInvoiceModel.cs" />
+    <Compile Include="Views\InvoiceView\EditInvoice\EditInvoiceValidationModel.cs" />
+    <Compile Include="Views\ForeignCompanyView\NewForeignCompany\ForeignCompanyValidationModel.cs" />
+    <Compile Include="Views\ForeignCompanyView\NewForeignCompany\NewForeignCompany.xaml.cs">
       <DependentUpon>NewForeignCompany.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewInvoice\InvoiceValidationModel.cs" />
-    <Compile Include="Views\NewInvoice\NewInvoice.xaml.cs">
+    <Compile Include="Views\InvoiceView\NewInvoice\InvoiceValidationModel.cs" />
+    <Compile Include="Views\InvoiceView\NewInvoice\NewInvoice.xaml.cs">
       <DependentUpon>NewInvoice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewOurCompany\NewOurCompany.xaml.cs">
+    <Compile Include="Views\OurCompanyView\EditOurCompany\EditOurCompany.xaml.cs">
+      <DependentUpon>EditOurCompany.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OurCompanyView\EditOurCompany\EditOurCompanyModel.cs" />
+    <Compile Include="Views\OurCompanyView\EditOurCompany\EditOurCompanyValidationModel.cs" />
+    <Compile Include="Views\OurCompanyView\NewOurCompany\NewOurCompany.xaml.cs">
       <DependentUpon>NewOurCompany.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewOurCompany\OurCompanyValidationModel.cs" />
+    <Compile Include="Views\OurCompanyView\NewOurCompany\OurCompanyValidationModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -152,19 +162,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\EditInvoice\EditInvoice.xaml">
+    <Page Include="Views\ForeignCompanyView\EditForeignCompany\EditForeignCompany.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NewForeignCompany\NewForeignCompany.xaml">
+    <Page Include="Views\InvoiceView\EditInvoice\EditInvoice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NewInvoice\NewInvoice.xaml">
+    <Page Include="Views\ForeignCompanyView\NewForeignCompany\NewForeignCompany.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NewOurCompany\NewOurCompany.xaml">
+    <Page Include="Views\InvoiceView\NewInvoice\NewInvoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OurCompanyView\EditOurCompany\EditOurCompany.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OurCompanyView\NewOurCompany\NewOurCompany.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -218,6 +236,7 @@
       <LastGenOutput>DataBaseModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

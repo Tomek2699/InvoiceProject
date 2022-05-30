@@ -1,0 +1,33 @@
+﻿<dx:ThemedWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxspch="http://schemas.devexpress.com/winfx/2008/xaml/spellchecker"
+    x:Class="ProjectInvoice.Views.NewOurCompany.NewOurCompany"
+    Title="Dodawanie swojej firmy" Height="426" Width="802"
+    WindowStartupLocation="CenterOwner" MinWidth="802" MinHeight="511" MaxWidth="802" MaxHeight="511" Icon="{dx:DXImage SvgImages/Business Objects/BO_Report.svg}" ControlBoxButtonSet="Close"
+    >
+
+    <Grid Margin="0,10,0,-16" MinWidth="786" MinHeight="511">
+        <Label x:Name="CompanyName" Content="Nazwa firmy:" HorizontalAlignment="Left" Margin="141,54,0,0" VerticalAlignment="Top" Width="116" Height="30" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Label x:Name="Address" Content="Adres firmy:" HorizontalAlignment="Left" Margin="146,134,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Label x:Name="NIP" Content="NIP:" HorizontalAlignment="Left" Margin="206,212,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Label x:Name="PhoneNumber" Content="Numer telefonu:" HorizontalAlignment="Left" Margin="114,367,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Label x:Name="BankAccountNumber" Content="Numer konta bankowego:" HorizontalAlignment="Left" Margin="43,309,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Label x:Name="BankName" Content="Nazwa banku:" HorizontalAlignment="Left" Margin="132,263,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+
+        <dxe:TextEdit x:Name="textBoxCompanyName" HorizontalAlignment="Left" Margin="272,54,0,0" VerticalAlignment="Top" Width="429" Height="60" TextWrapping="Wrap" ValidateOnTextInput="False" Validate="textBoxCompanyName_Validate">
+            <dxmvvm:Interaction.Behaviors>
+                <dxspch:DXSpellChecker/>
+            </dxmvvm:Interaction.Behaviors>
+        </dxe:TextEdit>
+        <dxe:TextEdit x:Name="textBoxAddress" HorizontalAlignment="Left" Margin="272,134,0,0" VerticalAlignment="Top" Width="429" Height="60" Validate="textBoxAddress_Validate" TextWrapping="Wrap"/>
+        <dxe:TextEdit x:Name="textBoxNIP" HorizontalAlignment="Left" Margin="272,212,0,0" VerticalAlignment="Top" Width="191" Height="27" Validate="textBoxNIP_Validate"/>
+        <dxe:TextEdit x:Name="textBoxBankName" HorizontalAlignment="Left" Margin="270,263,0,0" VerticalAlignment="Top" Width="429" Height="27" Validate="textBoxBankName_Validate" TextWrapping="Wrap"/>
+        <dxe:TextEdit x:Name="textBoxBankAccountNumber" HorizontalAlignment="Left" Margin="270,309,0,0" VerticalAlignment="Top" Width="334" Height="27" Validate="textBoxBankAccountNumber_Validate"/>
+        <dxe:TextEdit x:Name="textBoxPhoneNumber" HorizontalAlignment="Left" Margin="272,367,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.7,0.593" Width="162" Height="25" TextWrapping="Wrap" Validate="textBoxPhoneNumber_Validate"/>
+        <dx:SimpleButton x:Name="btnSave" Content="Zapisz" HorizontalAlignment="Left" Height="31" Margin="557,411,0,0" VerticalAlignment="Top" Width="142" FontSize="16" FontWeight="Bold" Background="#FF00DA0D" Foreground="Black" Glyph="{dx:DXImage SvgImages/HybridDemoIcons/BottomPanel/HybridDemo_Save.svg}" ToolTip="Zapisz" RenderTransformOrigin="0.491,-0.704" Click="btnSave_Click"/>
+
+    </Grid>
+</dx:ThemedWindow>

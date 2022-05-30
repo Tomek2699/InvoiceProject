@@ -23,7 +23,7 @@ namespace ProjectInvoice.Views.EditInvoice
         ProjectInvoiceEntities dbContext = new ProjectInvoiceEntities();
         private InvoiceValidationModel validationModel = new InvoiceValidationModel();
         InvoiceService invoiceService = new InvoiceService();
-        private EditInvoiceModel model {get;set;}
+        private EditInvoiceModel model = new EditInvoiceModel();
 
         public EditInvoice(EditInvoiceModel item)
         {

@@ -27,6 +27,41 @@ namespace ProjectInvoice.Services
             return db.OurCompanies.ToList();
         }
 
+        public void Edit(OurCompany ourCompany)
+        {
+            if (ourCompany != null)
+            {
+                OurCompany editOurCompany = db.OurCompanies.Find(ourCompany.CompanyID);
+
+                if (ourCompany.CompanyName != null)
+                {
+                    editOurCompany.CompanyName = ourCompany.CompanyName;
+                }
+                if (ourCompany.Address != null)
+                {
+                    editOurCompany.Address = ourCompany.Address;
+                }
+                if (ourCompany.NIP != null)
+                {
+                    editOurCompany.NIP = ourCompany.NIP;
+                }
+                if (ourCompany.BankName != null)
+                {
+                    editOurCompany.BankName = ourCompany.BankName;
+                }
+                if (ourCompany.BankAccountNumber!= null)
+                {
+                    editOurCompany.BankAccountNumber = ourCompany.BankAccountNumber;
+                }
+                if (ourCompany.PhoneNumber != null)
+                {
+                    editOurCompany.PhoneNumber = ourCompany.PhoneNumber;
+                }
+
+                db.SaveChanges();
+            }
+        }
+
         public void Delete(int ourCompanyId)
         {
             var item = db.OurCompanies.Find(ourCompanyId);
