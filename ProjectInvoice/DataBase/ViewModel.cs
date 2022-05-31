@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ProjectInvoice.DataBase
 {
-    public class ViewModel : ViewModelBase
+    public class ViewModel : ViewModelBase, INotifyPropertyChanged
     {
         ProjectInvoiceEntities dbcontext;
 
@@ -23,8 +23,15 @@ namespace ProjectInvoice.DataBase
 
         public ObservableCollection<Invoice> Invoices
         {
-            get => GetValue<ObservableCollection<Invoice>>();
-            set => SetValue(value);
+            get
+            {
+                return GetValue<ObservableCollection<Invoice>>();
+            }
+                
+            set
+            {
+                SetValue(value); 
+            }
         }
         public ObservableCollection<OurCompany> OurCompanies
         {

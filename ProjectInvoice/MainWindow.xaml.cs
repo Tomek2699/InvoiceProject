@@ -32,13 +32,21 @@ namespace ProjectInvoice
         InvoiceService invoiceService = new InvoiceService();
         OurCompaniesService ourCompanyService = new OurCompaniesService();
         ForeignCompaniesService foreignCompanyService = new ForeignCompaniesService();
+        ProjectInvoiceEntities db = new ProjectInvoiceEntities();  
 
         public MainWindow()
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            GridControlInvoice.ItemsSource = db.Invoices.ToList();
+            GridControlOurCompany.ItemsSource = db.OurCompanies.ToList();
+            GridControlForeignCompany.ItemsSource = db.ForeignCompanies.ToList();
+            
             InvoiceTab.Visibility = Visibility.Hidden;
             CompanyTab.Visibility = Visibility.Hidden;
+
+            deleteOurCompany.IsEnabled = false;
+            deleteForeignCompany.IsEnabled = false;
         }
 
         private void CreateInvoice(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
@@ -111,6 +119,7 @@ namespace ProjectInvoice
                if (row != null)
                {
                    invoiceService.Delete(row.InvoiceID);
+                    RefreshInvoiceGrid();
                }
            }  
         }
@@ -123,6 +132,8 @@ namespace ProjectInvoice
                 if (row != null)
                 {
                     ourCompanyService.Delete(row.CompanyID);
+                    RefreshCompanyAndForiegnGrid();
+                    deleteOurCompany.IsEnabled = false;
                 }
             }
         }
@@ -135,6 +146,8 @@ namespace ProjectInvoice
                 if (row != null)
                 {
                     foreignCompanyService.Delete(row.ForeignCompanyID);
+                    RefreshCompanyAndForiegnGrid();
+                    deleteForeignCompany.IsEnabled = false;
                 }
             }
         }
@@ -177,6 +190,63 @@ namespace ProjectInvoice
             EditForeignCompany editForeignCompanyWindow = new EditForeignCompany(editModel);
             editForeignCompanyWindow.Owner = this;
             editForeignCompanyWindow.ShowDialog();
+        }
+
+        private void RefreshInvoiceGrid()
+        {
+            GridControlInvoice.ItemsSource = db.Invoices.ToList();
+            GridControlInvoice.RefreshData();
+        }
+
+        private void RefreshCompanyAndForiegnGrid()
+        {
+            GridControlOurCompany.ItemsSource = db.OurCompanies.ToList();
+            GridControlForeignCompany.ItemsSource = db.ForeignCompanies.ToList();
+            GridControlOurCompany.RefreshData();
+            GridControlForeignCompany.RefreshData();
+        }
+
+        private void refreshInvoice_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+            RefreshInvoiceGrid();
+        }
+
+        private void refreshCompanyAndForeignGrid_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+            RefreshCompanyAndForiegnGrid();
+        }
+
+        private void TableView_GotFocus(object sender, RoutedEventArgs e)
+        {
+            deleteOurCompany.IsEnabled = true;
+        }
+
+        private void TableView_GotFocus_1(object sender, RoutedEventArgs e)
+        {
+            deleteForeignCompany.IsEnabled = true;
+        }
+
+        private void GridControlInvoice_CustomColumnDisplayText(object sender, DevExpress.Xpf.Grid.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column == columnCompanyID)
+            {
+                var value = e.Value as int?;
+                if (value != null)
+                {
+                    var companyName = ourCompanyService.FindOne(value);
+                    e.DisplayText = companyName.CompanyName.ToString();
+                }
+            }
+
+            if (e.Column == columnForeignCompanyID)
+            {
+                var value = e.Value as int?;
+                if (value != null)
+                {
+                    var foreignCompanyName = foreignCompanyService.FindOne(value);
+                    e.DisplayText = foreignCompanyName.CompanyName.ToString();
+                }
+            }
         }
     }
 }

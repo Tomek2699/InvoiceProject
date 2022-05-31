@@ -79,7 +79,6 @@ namespace ProjectInvoice.Services
 
             db.Invoices.Remove(item);
             db.SaveChanges();
-
         }
     }
 }

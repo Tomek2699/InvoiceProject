@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -30,6 +32,7 @@ namespace ProjectInvoice.Views
         InvoiceService invoiceService = new InvoiceService();
         private InvoiceValidationModel validationModel = new InvoiceValidationModel();
         private List<Commodity> Commodities = new List<Commodity>();
+        MainWindow mainWindow = new MainWindow();
         public NewInvoice()
         {
             InitializeComponent();
@@ -102,12 +105,12 @@ namespace ProjectInvoice.Views
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if(ValidationComboBox() && Validation())
+            if (ValidationComboBox() && Validation())
             {
                 SaveInvoice();
                 SaveCommodities();
                 this.Close();
-            }   
+            }
         }
 
         private void SaveCommodities()

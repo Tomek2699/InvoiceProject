@@ -17,7 +17,7 @@ namespace ProjectInvoice.Services
             return true;
         }
 
-        public ForeignCompany FindOne(int foreignCompanyId)
+        public ForeignCompany FindOne(int? foreignCompanyId)
         {
             return db.ForeignCompanies.Find(foreignCompanyId);
         }
