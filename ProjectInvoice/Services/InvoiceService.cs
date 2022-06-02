@@ -80,5 +80,10 @@ namespace ProjectInvoice.Services
             db.Invoices.Remove(item);
             db.SaveChanges();
         }
+
+        public List<Invoice> GetAll()
+        {
+            return db.Invoices.ToList();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using ProjectInvoice.DataBase;
 using ProjectInvoice.Services;
 using ProjectInvoice.Views;
+using ProjectInvoice.Views.Commodities;
 using ProjectInvoice.Views.EditInvoice;
 using ProjectInvoice.Views.ForeignCompanyView.EditForeignCompany;
 using ProjectInvoice.Views.NewContractor;
@@ -247,6 +248,13 @@ namespace ProjectInvoice
                     e.DisplayText = foreignCompanyName.CompanyName.ToString();
                 }
             }
+        }
+
+        private void showCommoditiesInInvoice_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+            Commodities window = new Commodities();
+            window.Owner = this;
+            window.ShowDialog();
         }
     }
 }

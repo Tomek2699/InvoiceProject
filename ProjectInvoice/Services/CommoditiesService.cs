@@ -19,5 +19,20 @@ namespace ProjectInvoice.Services
             }
             db.SaveChanges();
         }
+
+        public List<Commodity> GetAllByInvoiceId(int invoiceId)
+        {
+            List<Commodity> commodities = new List<Commodity>();
+            var commoditiesDb = db.Commodities.ToList();
+            foreach(var item in commoditiesDb)
+            {
+                if(item.InvoiceID == invoiceId)
+                {
+                    commodities.Add(item);
+                }
+            }
+
+            return commodities;
+        }
     }
 }

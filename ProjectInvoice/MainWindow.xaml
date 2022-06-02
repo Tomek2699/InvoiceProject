@@ -15,6 +15,7 @@
                 <dxr:RibbonPage x:Name="InvoicePage" Caption="Faktury">
                     <dxr:RibbonPageGroup Caption="Faktura">
                         <dxb:BarButtonItem x:Name="newInvoice" Content="Nowa faktura" ToolTip="Uwtórz nową fakturę" Glyph="{dx:DXImage SvgImages/Actions/New.svg}" RibbonStyle="Large" Padding="20,5,20,10" ItemClick="CreateInvoice" />
+                        <dxb:BarButtonItem x:Name="showCommoditiesInInvoice" Content="Podsumowanie" ToolTip="Wyświetl podsumowanie faktury" Glyph="{dx:DXImage SvgImages/Business Objects/BO_PivotChart.svg}" RibbonStyle="Large" Padding="20,5,20,10" ItemClick="showCommoditiesInInvoice_ItemClick"/>
                     </dxr:RibbonPageGroup>
                     <dxr:RibbonPageGroup Caption="Usuwanie">
                         <dxb:BarButtonItem x:Name="deleteInvoice" Content="Usuń fakturę" ToolTip="Usuń fakturę" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_DeleteCircled.svg}" RibbonStyle="Large" Padding="20,5,20,10" ItemClick="deleteInvoice_ItemClick" />

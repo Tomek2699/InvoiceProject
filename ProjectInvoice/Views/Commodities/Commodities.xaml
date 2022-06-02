@@ -1,0 +1,30 @@
+﻿<dx:ThemedWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    x:Class="ProjectInvoice.Views.Commodities.Commodities"
+    Title="Podsumowanie faktury" Height="755" Width="1098"
+    WindowStartupLocation="CenterOwner" MinWidth="1098" MinHeight="755" MaxWidth="1098" MaxHeight="755" Icon="{dx:DXImage SvgImages/Business Objects/BO_Report.svg}" ControlBoxButtonSet="Close"
+    >
+
+    <Grid>
+        <ComboBox x:Name="comboBoxInvoice" HorizontalAlignment="Left" Margin="104,33,0,0" VerticalAlignment="Top" Width="228" Height="26" SelectedItem="{Binding InvoiceID}" DisplayMemberPath="NoInvoice" SelectionChanged="ComboBox_SelectionChanged"/>
+
+        <dxg:GridControl x:Name="gridControlCommodities" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" Margin="10,118,10,181">
+            <dxg:GridControl.View>
+                <dxg:TableView/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+        <Label Content="Cena Netto:" HorizontalAlignment="Left" Margin="10,576,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+        <Label Content="Wartość netto:" HorizontalAlignment="Left" Margin="11,610,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+        <Label Content="Kwota VAT:" HorizontalAlignment="Left" Margin="11,639,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+        <Label Content="Kwota brutto:" HorizontalAlignment="Left" Margin="11,673,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+        <TextBox x:Name="textBoxPriceNetto" HorizontalAlignment="Left" Margin="123,581,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <TextBox x:Name="textBoxAmountNetto" HorizontalAlignment="Left" Margin="123,615,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <TextBox x:Name="textBoxAmountVAT" HorizontalAlignment="Left" Margin="123,644,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <TextBox x:Name="textBoxAmountBrutto" HorizontalAlignment="Left" Margin="123,678,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <dx:SimpleButton x:Name="btnClose" Content="Zamknij" HorizontalAlignment="Left" Margin="942,675,0,0" VerticalAlignment="Top" Width="136" Glyph="{dx:DXImage SvgImages/XAF/State_Validation_Valid.svg}" Click="btnClose_Click"/>
+
+    </Grid>
+</dx:ThemedWindow>
